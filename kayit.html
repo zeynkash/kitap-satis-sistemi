@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login & Register</title>
+  <style>
+    body { font-family: Arial, sans-serif; background-color: #f5f5f5; padding: 20px; }
+    .container { width: 300px; margin: auto; background-color: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
+    input { width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px; }
+    button { width: 100%; padding: 10px; background-color: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer; }
+    button:hover { background-color: #0056b3; }
+    .toggle { text-align: center; margin-top: 10px; cursor: pointer; color: #007BFF; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2 id="form-title">Login</h2>
+    <input type="text" id="username" placeholder="Username" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <input type="email" id="email" placeholder="Email" style="display: none;">
+    <button onclick="handleSubmit()">Submit</button>
+    <p class="toggle" onclick="toggleForm()">Don't have an account? Register</p>
+  </div>
+
+  <script>
+    let isRegister = false;
+
+    function toggleForm() {
+      const title = document.getElementById('form-title');
+      const emailField = document.getElementById('email');
+      const toggleText = document.querySelector('.toggle');
+
+      if (isRegister) {
+        title.textContent = 'Login';
+        emailField.style.display = 'none';
+        toggleText.textContent = "Don't have an account? Register";
+      } else {
+        title.textContent = 'Register';
+        emailField.style.display = 'block';
+        toggleText.textContent = 'Already have an account? Login';
+      }
+
+      isRegister = !isRegister;
+    }
+
+    function handleSubmit() {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const email = document.getElementById('email').value;
+
+      if (isRegister) {
+        alert(`Registered with\nUsername: ${username}\nEmail: ${email}\nPassword: ${password}`);
+      } else {
+        alert(`Logged in as\nUsername: ${username}\nPassword: ${password}`);
+      }
+    }
+  </script>
+</body>
+</html>
